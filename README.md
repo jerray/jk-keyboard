@@ -2,6 +2,8 @@
 
 一个为移动端页面设计的HTML数字键盘程序，依赖jQuery。
 
+![Screenshot](https://raw.githubusercontent.com/jerray/jk-keyboard/master/screenshot/jk-1.gif)
+
 ## 用法
 
 ### 键盘布局
