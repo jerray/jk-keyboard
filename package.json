@@ -1,6 +1,6 @@
 {
   "name": "jk-keyboard",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "HTML Numeric Keyboard For Mobile",
   "main": "jk-keyboard.js",
   "directories": {
