@@ -1,0 +1,94 @@
+$black: #000;
+$white: #fff;
+$green: #3fb837;
+
+@mixin translate3d($t...) {
+  -webkit-transform: translate3d($t);
+     -moz-transform: translate3d($t);
+      -ms-transform: translate3d($t);
+          transform: translate3d($t);
+}
+
+@mixin transition($t...) {
+  -webkit-transition: $t;
+     -moz-transition: $t;
+      -ms-transition: $t;
+          transition: $t;
+}
+
+@mixin keyboard($key-height) {
+  .jk-keyboard {
+    height: $key-height * 4;
+  }
+  .jk-key {
+    height: $key-height;
+    line-height: $key-height;
+    @each $grade in 0, 1, 2, 3 {
+      &.jk-height-#{$grade} {
+        height: $key-height * ($grade + 1);
+        line-height: $key-height * ($grade + 1);
+      }
+    }
+  }
+}
+
+.jk-keyboard {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  opacity: 0.2;
+  @include transition(.3s all ease-in-out);
+  @include translate3d(0, 120%, 0);
+
+  &.open {
+    opacity: 1;
+    @include translate3d(0, 0, 0);
+  }
+}
+
+.jk-key {
+  font-size: 24px;
+  font-family: sans-serif;
+  color: $black;
+  display: block;
+  text-align: center;
+  position: absolute;
+  width: 25%;
+  border: 1px solid #dedfe2;
+  margin: -1px;
+  background-color: #fafafb;
+
+  &.submit {
+    color: $white;
+    background-color: #06bf04;
+    &.disabled {
+      color: #beeabe;
+      background-color: #64d364;
+    }
+  }
+  &.text {
+    font-size: 22px;
+  }
+  &.down {
+    background-color: #ededed;
+  }
+
+  @each $position in 'left', 'top' {
+    @each $grade in 0, 1, 2, 3 {
+      &.jk-#{$position}-#{$grade} {
+        #{$position}: $grade * 25%;
+      }
+    }
+  }
+}
+
+@include keyboard(65px);
+
+@media only screen and (max-height: 570px) {
+  @include keyboard(60px);
+}
+
+@media only screen and (max-height: 500px) {
+  @include keyboard(50px);
+}

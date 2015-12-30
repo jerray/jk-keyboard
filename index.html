@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>JK</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./jk-keyboard.css">
+    <style>
+      #number {
+        padding: 20px;
+        height: 36px;
+        line-height: 36px;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="number"></h1>
+    <div id="jk-keyboard" class="jk-keyboard">
+      <a class="jk-key jk-left-0 jk-top-0" data-code="1"><span>1</span></a>
+      <a class="jk-key jk-left-1 jk-top-0" data-code="2"><span>2</span></a>
+      <a class="jk-key jk-left-2 jk-top-0" data-code="3"><span>3</span></a>
+      <a class="jk-key jk-left-0 jk-top-1" data-code="4"><span>4</span></a>
+      <a class="jk-key jk-left-1 jk-top-1" data-code="5"><span>5</span></a>
+      <a class="jk-key jk-left-2 jk-top-1" data-code="6"><span>6</span></a>
+      <a class="jk-key jk-left-0 jk-top-2" data-code="7"><span>7</span></a>
+      <a class="jk-key jk-left-1 jk-top-2" data-code="8"><span>8</span></a>
+      <a class="jk-key jk-left-2 jk-top-2" data-code="9"><span>9</span></a>
+      <a class="jk-key jk-left-0 jk-top-3" id="keyboard-down">隐藏</a>
+      <a class="jk-key jk-left-1 jk-top-3" data-code="0"><span>0</span></a>
+      <a class="jk-key jk-left-2 jk-top-3" data-code="."><span>.</span></a>
+      <a class="jk-key jk-left-3 jk-top-0 jk-height-1" data-code="backspace">删除</a>
+      <a class="jk-key jk-left-3 jk-top-2 jk-height-1 submit disabled jk-text" id="submit"><span>确认</span></a>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./jk-keyboard.js"></script>
+    <script>
+      (function() {
+        var $number = $('#number');
+        JK.start({
+          container: '#jk-keyboard',
+          decimal: 3, // 最大小数位数
+          open: true, // 自动弹出键盘
+
+          // 按键被按下时的回调
+          onKeyDown: function(value) {
+            console.debug('onKeyDown', value);
+            // 可以返回false阻止输入
+            // if (parseFloat(value) > 1000) {
+            //   return false;
+            // }
+          },
+
+          // 按键弹起时的回调，这里可以获取最终输入结果
+          onKeyUp: function(value) {
+            console.debug('onKeyUp', value);
+            $number.text(value);
+          },
+
+          // 初始化完成的回调
+          onStart: function(keyboard) {
+            keyboard.$el.find('#keyboard-down').on('click', function() {
+              keyboard.close();
+            });
+            $number.on('click', function() {
+              keyboard.open();
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

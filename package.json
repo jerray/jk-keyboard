@@ -1,0 +1,31 @@
+{
+  "name": "jk-keyboard",
+  "version": "0.7.0",
+  "description": "HTML Numeric Keyboard For Mobile",
+  "main": "jk-keyboard.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "open test/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerray/jk-keyboard.git"
+  },
+  "keywords": [
+    "html",
+    "numeric",
+    "keyboard",
+    "mobile"
+  ],
+  "author": "Jerray Fu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jerray/jk-keyboard/issues"
+  },
+  "homepage": "https://github.com/jerray/jk-keyboard#readme",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
+}
