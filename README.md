@@ -1,6 +1,6 @@
 # jk-keyboard
 
-一个为移动端页面设计的HTML数字键盘程序，依赖jQuery。
+一个为移动端页面设计的HTML数字键盘程序。
 
 ![Screenshot](https://raw.githubusercontent.com/jerray/jk-keyboard/master/screenshot/jk-1.gif)
 
@@ -28,7 +28,6 @@
   <a class="jk-key jk-left-3 jk-top-0 jk-height-1" data-code="backspace">删除</a>
   <a class="jk-key jk-left-3 jk-top-2 jk-height-1 submit disabled jk-text" id="submit"><span>确认</span></a>
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="./jk-keyboard.js"></script>
 ```
 
@@ -38,7 +37,7 @@
 
 ```javascript
 (function() {
-  var $number = $('#number');
+  var number = document.querySelector('#number');
   JK.start({
     container: '#jk-keyboard',
     decimal: 3,
@@ -52,13 +51,13 @@
     },
     onKeyUp: function(value) {
       console.debug('onKeyUp', value);
-      $number.text(value);
+      number.textContent = value;
     },
     onStart: function(keyboard) {
-      keyboard.$el.find('#keyboard-down').on('click', function() {
+      keyboard.el.querySelector('#keyboard-down').on('click', function() {
         keyboard.close();
       });
-      $number.on('click', function() {
+      number.addEventListener('click', function() {
         keyboard.open();
       });
     }
