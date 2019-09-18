@@ -54,7 +54,7 @@ $green: #3fb837;
   display: block;
   text-align: center;
   position: absolute;
-  width: 25%;
+  width: 25vw;
   border: 1px solid #dedfe2;
   margin: -1px;
   background-color: #fafafb;
@@ -83,12 +83,4 @@ $green: #3fb837;
   }
 }
 
-@include keyboard(65px);
-
-@media only screen and (max-height: 570px) {
-  @include keyboard(60px);
-}
-
-@media only screen and (max-height: 500px) {
-  @include keyboard(50px);
-}
+@include keyboard(10vh);

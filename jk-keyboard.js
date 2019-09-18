@@ -1,12 +1,6 @@
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('jquery'));
-  } else {
-    root.JK = factory(root.jQuery);
-  }
-} (this, function ($) {
+  root.JK = factory();
+} (this, function () {
   var JK = function() {};
 
   var Keyboard = function(options) {
@@ -31,11 +25,13 @@
 
   Keyboard.prototype.init = function() {
     this.clear();
-    var $el = $(this.options.container);
+    var el = document.querySelector(this.options.container);
     this.onTouchStart = Keyboard.prototype.onTouchStart.bind(this);
-    this.$el = $el;
-    this.$keys = $el.find('.jk-key[data-code]');
-    this.$keys.on('touchstart', this.onTouchStart);
+    this.el = el;
+    this.keys = el.querySelectorAll('.jk-key[data-code]');
+    for (var key of this.keys) {
+      key.addEventListener('touchstart', this.onTouchStart);
+    }
 
     if (this.options.open) {
       this.open();
@@ -52,22 +48,21 @@
   };
 
   Keyboard.prototype.open = function() {
-    this.$el.addClass('open');
+    this.el.classList.add('open');
   };
 
   Keyboard.prototype.close = function() {
-    this.$el.removeClass('open');
+    this.el.classList.remove('open');
   };
 
   Keyboard.prototype.onTouchStart = function(e) {
     e.preventDefault();
-    var $key = $(e.currentTarget);
-    var code = $key.data('code');
-    var result = this.handleKeyPress(code);
+    var key = e.currentTarget;
+    var result = this.handleKeyPress(key.dataset.code);
 
-    $key.addClass('down');
+    key.classList.add('down');
     setTimeout(function() {
-      $key.removeClass('down');
+      key.classList.remove('down');
     }, 100);
 
     if (typeof this.options.onKeyUp === 'function') {

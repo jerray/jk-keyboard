@@ -24,8 +24,5 @@
   "bugs": {
     "url": "https://github.com/jerray/jk-keyboard/issues"
   },
-  "homepage": "https://github.com/jerray/jk-keyboard#readme",
-  "dependencies": {
-    "jquery": "^2.1.4"
-  }
+  "homepage": "https://github.com/jerray/jk-keyboard#readme"
 }
